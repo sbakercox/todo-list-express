@@ -20,22 +20,25 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+<!-- Getting the array from the backend, iterating through that array and creating an li for each object, displaying them -->    
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+<!-- Depending of the properties of the object, the if statement will assign a class to the object so that the Css can address/style -->        
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %> 
+<!-- a span to hold the icon of a trash can  -->            
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+<!-- This takes the "left" property form the backend and shows the number items that are not completed -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+<!-- This submits a post request to the backend, adding/updating the database -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
