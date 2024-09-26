@@ -35,14 +35,14 @@ app.get('/',async (request, response)=>{
 // passes the variables we just called for into ejs    
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
 // this is a fetch method of doing the same thing the async await is doing just commented out    
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
+    db.collection('todos').find().toArray()
+    .then(data => {
+        db.collection('todos').countDocuments({completed: false})
+        .then(itemsLeft => {
+            response.render('index.ejs', { items: data, left: itemsLeft })
+        })
+    })
+    .catch(error => console.error(error))
 })
 
 app.post('/addTodo', (request, response) => {
